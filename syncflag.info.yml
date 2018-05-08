@@ -1,0 +1,5 @@
+name: "Sync Flag"
+type: module
+description: "Signal whether the site can be synced or has work in progress."
+core: 8.x
+package: IDM

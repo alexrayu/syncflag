@@ -1,0 +1,8 @@
+syncflag:
+  js:
+    assets/js/syncflag.js: {}
+  css:
+    component:
+      assets/css/syncflag.css: {}
+  dependencies:
+    - core/jquery

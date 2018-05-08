@@ -1,0 +1,10 @@
+
+aapp.xhr_controller:
+  path: 'syncflag/ajax'
+  defaults:
+    _controller: '\Drupal\syncflag\Controller\XhrController::xhr'
+    _title: 'SyncFlag AJAX Callback'
+  options:
+    no_cache: TRUE
+  requirements:
+    _permission: 'access content'
