@@ -1,0 +1,8 @@
+name = "Sync Flag"
+description = "Signal whether the site can be synced or has work in progress."
+core = 7.x
+package = "IDM"
+version = "7.x-1.0"
+
+scripts[] = "assets/js/syncflag.js"
+stylesheets[all][] = "assets/css/syncflag.css"

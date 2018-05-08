@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * SyncFlag module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function syncflag_menu() {
+  $items['syncflag/ajax'] = array(
+    'title' => 'SyncFlag AJAX Callback',
+    'page callback' => 'syncflag_ajax',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Callback for ajax.
+ */
+function syncflag_ajax() {
+  global $user;
+
+  if (empty($_GET['c'])) {
+    drupal_exit();
+  }
+  $command = $_GET['c'];
+  $status = variable_get('syncflag', 1);
+  switch ($command) {
+    case 'view':
+      break;
+
+    case 'toggle':
+      if (in_array('administrator', $user->roles)) {
+        $new_status = $status ? 0 : 1;
+        variable_set('syncflag', $new_status);
+      }
+      break;
+  }
+  $status = variable_get('syncflag', 1);
+  $data = ['s' => $status];
+
+  drupal_page_is_cacheable(FALSE);
+  drupal_add_http_header('Content-Type', 'application/json; charset=utf-8');
+  print json_encode($data);
+
+  drupal_exit();
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function syncflag_preprocess_html(&$variables) {
+  $variables['classes_array'][] = 'syncflag';
+}
